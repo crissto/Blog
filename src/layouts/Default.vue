@@ -1,15 +1,21 @@
 <template>
   <div class="layout">
     <header class="header">
+      test
       <strong>
         <g-link to="/">{{ $static.metadata.siteName }}</g-link>
       </strong>
-      <nav class="nav">
-        <g-link class="nav__link" to="/">Home</g-link>
-        <g-link class="nav__link" to="/about/">About</g-link>
+      <nav class="nav flex">
+        <ToggleTheme/>
+        <div>
+          <g-link class="nav__link" to="/">Home</g-link>
+        </div>
+        <div>
+          <g-link class="nav__link" to="/about/">About</g-link>
+        </div>
       </nav>
     </header>
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -21,11 +27,21 @@ query {
 }
 </static-query>
 
-<style>
+<script>
+import ToggleTheme from '~/components/ToggleTheme.vue'
+
+export default {
+  props: {showLogo: {default: true}},
+  components: {ToggleTheme}
+}
+</script>
+
+<style lang="scss">
 body {
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  margin:0;
-  padding:0;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
   line-height: 1.5;
 }
 
@@ -42,6 +58,7 @@ body {
   align-items: center;
   margin-bottom: 20px;
   height: 80px;
+
 }
 
 .nav__link {
